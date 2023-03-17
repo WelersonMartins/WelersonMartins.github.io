@@ -16,7 +16,7 @@ font-weight: bold;
 font-size:68px; 
 text-shadow: 5px 5px 5px black;
 margin: auto;
-
+  border: 3px solid green;
   padding: 10px;
 }
 </style>
@@ -27,18 +27,18 @@ margin: auto;
 
 
  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://web.crea.acsta.net/rep_dif/Smart/Warner/BatmanVsSuperman/Arrobas-250/Contagem/dest/jquery.countdown.js"></script>
+    <script type="text/javascript" src="http://web.crea.acsta.net/rep_dif/Smart/Warner/BatmanVsSuperman/Arrobas-250/Contagem/dest/jquery.countdown.js"></script>
  
     <script type="text/javascript">
       $(function() {
-        var endDate = "march 17, 2023 18:00:00";
+        var endDate = "april 04, 2023 08:00:00";
  
         $('.countdown.simple').countdown({ date: endDate });
  
         $('.countdown.styled').countdown({
           date: endDate,
           render: function(data) {
-            $(this.el).html("<div>"  + "Ferias em :"+ this.leadingZeros(data.days, 2) + " dias " + this.leadingZeros(data.hours, 2) + " horas " + this.leadingZeros(data.min, 2) + " min " + this.leadingZeros(data.sec, 2) + " seg</div>");
+            $(this.el).html("<div>"  + "Pai volta em "+ this.leadingZeros(data.days, 2) + " dias " + this.leadingZeros(data.hours, 2) + " horas " + this.leadingZeros(data.min, 2) + " min " + this.leadingZeros(data.sec, 2) + " seg</div>");
 
 if(this.leadingZeros(data.days, 2)=="00" && this.leadingZeros(data.hours, 2)=="00" && this.leadingZeros(data.min, 2)=="00" && this.leadingZeros(data.sec, 2) == "00") {
 alert("CHEGO A HORA CARAIOOOOOOOOO");
