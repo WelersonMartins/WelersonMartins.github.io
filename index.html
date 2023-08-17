@@ -72,14 +72,14 @@
 
     <script type="text/javascript">
       $(function () {
-        var endDate = "august 17, 2023 17:59:59";
+        var endDate = "september 05, 2023 08:00:00";
 
         $('.countdown.simple').countdown({ date: endDate });
 
         $('.countdown.styled').countdown({
           date: endDate,
           render: function (data) {
-            $(this.el).html("<div>" + "Férias do teu macho em " + this.leadingZeros(data.days, 2) + " dias " + this.leadingZeros(data.hours, 2) + " horas " + this.leadingZeros(data.min, 2) + " min " + this.leadingZeros(data.sec, 2) + " seg</div>");
+            $(this.el).html("<div>" + "Tio Helho volta em " + this.leadingZeros(data.days, 2) + " dias " + this.leadingZeros(data.hours, 2) + " horas " + this.leadingZeros(data.min, 2) + " min " + this.leadingZeros(data.sec, 2) + " seg</div>");
 
             if (this.leadingZeros(data.days, 2) == "00" && this.leadingZeros(data.hours, 2) == "00" && this.leadingZeros(data.min, 2) == "00" && this.leadingZeros(data.sec, 2) == "00") {
               alert("CHEGO A HORA CARAIOOOOOOOOO");
