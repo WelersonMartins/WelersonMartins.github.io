@@ -1,149 +1,101 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ferias</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Férias do Welerson</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            background-image: url('https://ca.slack-edge.com/T037JGVFP8R-U05G5KP35T3-0128b52fd22e-192'); /* Substitua pelo caminho da sua imagem */
+            background-repeat: repeat; /* Repetir a imagem para criar o mosaico */
+            background-size: auto; /* Manter o tamanho original da imagem */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 6vw;
+            margin-bottom: 20px;
+            padding: 0 10px;
+            word-wrap: break-word;
+        }
+        #label {
+            font-size: 5vw;
+            padding: 0 10px;
+        }
+        #timer {
+            font-size: 5vw;
+            padding: 0 10px;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 8vw;
+            }
+            #label {
+                font-size: 7vw;
+            }
+            #timer {
+                font-size: 7vw;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 10vw;
+            }
+            #label {
+                font-size: 8vw;
+            }
+            #timer {
+                font-size: 8vw;
+            }
+        }
+    </style>
 </head>
+<body>
+    <h1 id="label">Sua tristeza começa em</h1>
+    <div id="timer"></div>
 
-<body style="background-image:url(https://gamefm.com.br/wp-content/uploads/2014/04/DSII.jpg);background-size: 100%;">
+    <script>
+        function calcularTempoRestante(futuro) {
+            const agora = new Date().getTime();
+            const tempoRestante = futuro - agora;
 
-  <style>
-    /* Responsive Full Background Image Using CSS
- * Tutorial URL: http://sixrevisions.com/css/responsive-background-image/
-*/
-    body {
-      /* Location of the image */
-      background-image: url(images/background-photo.jpg);
+            const dias = Math.floor(tempoRestante / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((tempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((tempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((tempoRestante % (1000 * 60)) / 1000);
 
-      /* Image is centered vertically and horizontally at all times */
-      background-position: center center;
+            return { dias, horas, minutos, segundos };
+        }
 
-      /* Image doesn't repeat */
-      background-repeat: no-repeat;
+        function atualizarTimer() {
+            let dataFuturo = new Date('2024-08-16T18:00:00-03:00').getTime();
+            const dataSegundoEvento = new Date('2024-09-11T08:00:00-03:00').getTime();
+            const agora = new Date().getTime();
 
-      /* Makes the image fixed in the viewport so that it doesn't move when 
-     the content height is greater than the image height */
-      background-attachment: fixed;
-
-      /* This is what makes the background image rescale based on its container's size */
-      background-size: cover;
-
-      /* Pick a solid background color that will be displayed while the background image is loading */
-      background-color: #464646;
-
-      /* SHORTHAND CSS NOTATION
-   * background: url(background-photo.jpg) center center cover no-repeat fixed;
-   */
-    }
-
-    /* For mobile devices */
-    @media only screen and (max-width: 767px) {
-      body {
-        /* The file size of this background image is 93% smaller
-     * to improve page load speed on mobile internet connections */
-        background-image: url(images/background-photo-mobile-devices.jpg);
-      }
-    }
-
-    .tudo {
-      position: absolute;
-      top: 40%;
-      text-align: center;
-      color: red;
-      font-family: sans-serif;
-      font-weight: bold;
-      font-size: 68px;
-      text-shadow: 5px 5px 5px black;
-      margin: auto;
-
-      padding: 10px;
-    }
-  </style>
-
-  <div class="tudo">
-
-
-
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript"
-      src="https://web.crea.acsta.net/rep_dif/Smart/Warner/BatmanVsSuperman/Arrobas-250/Contagem/dest/jquery.countdown.js"></script>
-
-    <script type="text/javascript">
-      $(function () {
-        var endDate = "september 05, 2023 08:00:00";
-
-        $('.countdown.simple').countdown({ date: endDate });
-
-        $('.countdown.styled').countdown({
-          date: endDate,
-          render: function (data) {
-            $(this.el).html("<div>" + "Tio Helho volta em " + this.leadingZeros(data.days, 2) + " dias " + this.leadingZeros(data.hours, 2) + " horas " + this.leadingZeros(data.min, 2) + " min " + this.leadingZeros(data.sec, 2) + " seg</div>");
-
-            if (this.leadingZeros(data.days, 2) == "00" && this.leadingZeros(data.hours, 2) == "00" && this.leadingZeros(data.min, 2) == "00" && this.leadingZeros(data.sec, 2) == "00") {
-              alert("CHEGO A HORA CARAIOOOOOOOOO");
+            if (agora > dataFuturo) {
+                dataFuturo = dataSegundoEvento;
+                document.getElementById('label').textContent = "A alegria voltará em";
             }
 
+            const { dias, horas, minutos, segundos } = calcularTempoRestante(dataFuturo);
 
-          }
-        });
+            document.getElementById('timer').innerHTML =
+                `${dias}d ${horas}h ${minutos}m ${segundos}s`;
 
-        $('.countdown.callback').countdown({
-          date: +(new Date) + 10000,
-          render: function (data) {
-            $(this.el).text(this.leadingZeros(data.sec, 2) + " sec");
-          },
-          onEnd: function () {
-            $(this.el).addClass('ended');
-          }
-        }).on("click", function () {
-          $(this).removeClass('ended').data('countdown').update(+(new Date) + 10000).start();
-        });
+            if (agora >= dataSegundoEvento) {
+                clearInterval(intervalo);
+            }
+        }
 
-        // End time for diff purposes
-        var endTimeDiff = new Date().getTime() + 15000;
-        // This is server's time
-        var timeThere = new Date();
-        // This is client's time (delayed)
-        var timeHere = new Date(timeThere.getTime() - 5434);
-        // Get the difference between client time and server time
-        var diff_ms = timeHere.getTime() - timeThere.getTime();
-        // Get the rounded difference in seconds
-        var diff_s = diff_ms / 1000 | 0;
-
-        var notice = [];
-        notice.push('Server time: ' + timeThere.toDateString() + ' ' + timeThere.toTimeString());
-        notice.push('Your time: ' + timeHere.toDateString() + ' ' + timeHere.toTimeString());
-        notice.push('Time difference: ' + diff_s + ' seconds (' + diff_ms + ' milliseconds to be precise). Your time is a bit behind.');
-
-        $('.offset-notice').html(notice.join('<br />'));
-
-        $('.offset-server .countdown').countdown({
-          date: endTimeDiff,
-          offset: diff_s * 1000,
-          onEnd: function () {
-            $(this.el).addClass('ended');
-          }
-        });
-
-        $('.offset-client .countdown').countdown({
-          date: endTimeDiff,
-          onEnd: function () {
-            $(this.el).addClass('ended');
-          }
-        });
-
-      });
+        const intervalo = setInterval(atualizarTimer, 1000);
     </script>
-
-    <div class="countdown styled"></div>
-
-
-
-
-
-  </div>
 </body>
-
 </html>
